@@ -1,0 +1,178 @@
+{
+  "name": "Meu-primeiro-fluxo",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "ed23e22e-ff80-4e14-a35b-fa7d893eb00e",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3abc522d-365b-4bab-867e-509fc9a10e3b",
+              "name": "nome",
+              "value": "neucielle",
+              "type": "string"
+            },
+            {
+              "id": "86b567de-8185-4917-b4d7-28967b64b3aa",
+              "name": "status",
+              "value": "aprendizado",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        208,
+        0
+      ],
+      "id": "36f018d5-1429-499e-863a-d1d0ac64f4b3",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "f9811fc0-8583-4dab-93fb-e86bdbc3b61d",
+              "leftValue": "={{ $json['status'] }}",
+              "rightValue": "aprendizado",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        416,
+        0
+      ],
+      "id": "09583522-5e0d-4969-acfe-57b3a750bb86",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e7a3573f-b231-4526-9b75-d97cff3d4ff1",
+              "name": "mensagem",
+              "value": "=olá {{$json.nome}}, voce está no fluxo certo!",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        624,
+        -96
+      ],
+      "id": "d7c34708-7e8f-4f8a-86ae-392e03bc40c7",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f2c6e595-e986-4d03-b8ac-29b3eb282874",
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        624,
+        96
+      ],
+      "id": "f1b72563-b1c5-4ad6-8a33-062834f47ce0",
+      "name": "Edit Fields2"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "53e5aac4-8647-49cd-99dc-4c049db5b46b",
+  "meta": {
+    "instanceId": "851d66e1d4d3de049d3426226b363639c19bc3f8bd546c96980b0597b40a65fd"
+  },
+  "id": "2hFdtHvY06oeAY6z",
+  "tags": []
+}
